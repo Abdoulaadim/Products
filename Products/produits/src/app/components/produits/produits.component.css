@@ -1,0 +1,5 @@
+.th-hover:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}

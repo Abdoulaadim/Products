@@ -1,0 +1,66 @@
+<div class="row my-4">
+    <div class="col-md-6">
+        <h3> Products List </h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-dm12 mx-auto">
+    </div>
+    <div class="col-md-12 mx-auto text-right  my-5 ">
+        <div class="col-sm-2 float-end ">
+            <select class="form-select" [(ngModel)]="produitw" (click)="searchProduits()" aria-label="Default select example"> 
+            <option disabled selected value> -- Select  Category -- </option>
+            <option  value="All category">All Categories</option>
+            <option  *ngFor="let produit of produitselect " value="{{produit.category}}">{{produit.category}}</option>
+          </select>
+            <!-- <p>{{produitw}}</p> -->
+        </div>
+
+        <div class="col-sm-2 ">
+            <input [(ngModel)]="produitF" (keyup)="searchProduitsF()" type="text" class="form-control" placeholder="Search...">
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 mx-auto">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Title</th>
+                    <th scope="col" class="th-hover" (click)="triprice()">Price</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Category</th>
+                    <th scope="col" class="th-hover" (click)="trirate()">Rate</th>
+                    <th scope="col" class="th-hover" (click)="trirate()">Count</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let produit of resultproduits | paginate:{ itemsPerPage: 5, currentPage: p }">
+                    <th> <img src="{{produit.image}}" width="50" height="50" alt=""></th>
+                    <td>{{produit.title}}</td>
+                    <td>{{produit.price}}</td>
+                    <td>{{produit.description}}</td>
+                    <td>{{produit.category}}</td>
+                    <td>{{produit.rating.rate}}</td>
+                    <td>{{produit.rating.count}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="col-md-12 text-center my-5">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+</div>
